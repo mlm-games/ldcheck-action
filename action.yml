@@ -1,4 +1,4 @@
-name: 'LDCHECK'
+name: 'LDCHECK-action'
 description: 'Run LDCHECK on Android recovery builds'
 inputs:
   OUTPUT_DIR:
