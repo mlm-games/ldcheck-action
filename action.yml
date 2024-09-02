@@ -29,3 +29,7 @@ runs:
         echo "Done checking missing dependencies. Review, and reconfigure your tree."
       shell: bash
       continue-on-error: true
+
+branding:
+  icon: terminal
+  color: green
