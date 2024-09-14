@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # list needed shared libs for Android lib along with their paths
 
 # Initialize variables
