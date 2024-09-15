@@ -4,7 +4,6 @@ inputs:
   OUTPUT_DIR:
     default: ''
     description: 'Output directory of the build'
-    required: true
   LDCHECKPATH:
     description: 'Path of blobs to check'
     required: true
