@@ -12,7 +12,7 @@ inputs:
 steps:
   - name: Run LDCheck
     run: |
-      # Determine the output directory, use env.OUTPUT_DIR if inputs.OUTPUT_DIR is not provided
+      # Determine the output directory, use env OUTPUT_DIR if OUTPUT_DIR is not provided
       OUTPUT_DIR="${{ inputs.OUTPUT_DIR }}"
       if [ -z "$OUTPUT_DIR" ]; then
         OUTPUT_DIR="${{ env.OUTPUT_DIR }}"
