@@ -4,9 +4,6 @@ inputs:
   OUTPUT_DIR:
     description: 'Output directory of the build'
     required: true
-  DEVICE_NAME:
-    description: 'Device Codename'
-    required: true
   LDCHECKPATH:
     description: 'Path of blobs to check'
     required: true
@@ -18,10 +15,10 @@ runs:
     - name: Run LDCheck
       run: |
         # Copy tools to the appropriate location
-        cp ${{ github.action_path }}/tools/ldcheck ${{ env.OUTPUT_DIR }}/recovery/root/
+        cp ${{ github.action_path }}/tools/ldcheck ${{ inputs.OUTPUT_DIR }}/recovery/root/
         
         # Change to the recovery root directory
-        cd ${{ env.OUTPUT_DIR }}/recovery/root
+        cd ${{ inputs.OUTPUT_DIR }}/recovery/root
         
         # Run ldcheck
         python3 ldcheck -p system/lib64:vendor/lib64:system/lib:vendor/lib -d ${{ inputs.LDCHECKPATH }}
