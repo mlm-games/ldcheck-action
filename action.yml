@@ -2,33 +2,29 @@ name: 'LDCHECK-action'
 description: 'Run LDCHECK on Android recovery builds'
 inputs:
   OUTPUT_DIR:
-    default: ''
     description: 'Output directory of the build'
+    required: true
   LDCHECKPATH:
     description: 'Path of blobs to check'
     required: true
     default: 'system/bin/qseecomd'
-steps:
-  - name: Run LDCheck
-    run: |
-      # Determine the output directory, use env OUTPUT_DIR if OUTPUT_DIR is not provided
-      REC_ROOT="$OUTPUT_DIR"
-      if [ -z "$OUTPUT_DIR" ]; then
-        REC_ROOT="${{ env.OUTPUT_DIR }}"
-      fi
-      
-      # Copy tools to the appropriate location
-      cp ${{ github.action_path }}/tools/ldcheck "$REC_ROOT/recovery/root/"
-      
-      # Change to the recovery root directory
-      cd "$REC_ROOT/recovery/root"
-      
-      # Run ldcheck
-      python3 ldcheck -p system/lib64:vendor/lib64:system/lib:vendor/lib -d ${{ inputs.LDCHECKPATH }}
-      echo "Done checking missing dependencies. Review, and reconfigure your tree."
-    shell: bash
-    continue-on-error: true
 
+runs:
+  using: "composite"
+  steps:
+    - name: Run LDCheck
+      run: |
+        # Copy tools to the appropriate location
+        cp ${{ github.action_path }}/tools/ldcheck ${{ inputs.OUTPUT_DIR }}/recovery/root/
+        
+        # Change to the recovery root directory
+        cd ${{ inputs.OUTPUT_DIR }}/recovery/root
+        
+        # Run ldcheck
+        python3 ldcheck -p system/lib64:vendor/lib64:system/lib:vendor/lib -d ${{ inputs.LDCHECKPATH }}
+        echo "Done checking missing dependencies. Review, and reconfigure your tree."
+      shell: bash
+      continue-on-error: true
 
 branding:
   icon: terminal
