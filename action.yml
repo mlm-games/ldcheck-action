@@ -2,7 +2,7 @@ name: 'LDCHECK-action'
 description: 'Run LDCHECK on Android recovery builds'
 inputs:
   OUTPUT_DIR:
-    default: ${{ env.OUTPUT_DIR }}
+    default: 'env.OUTPUT_DIR'
     description: 'Output directory of the build'
     required: true
   LDCHECKPATH:
