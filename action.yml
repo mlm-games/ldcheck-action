@@ -13,7 +13,7 @@ steps:
   - name: Run LDCheck
     run: |
       # Determine the output directory, use env OUTPUT_DIR if OUTPUT_DIR is not provided
-      REC_ROOT="${{ inputs.OUTPUT_DIR }}"
+      REC_ROOT="$OUTPUT_DIR"
       if [ -z "$OUTPUT_DIR" ]; then
         REC_ROOT="${{ env.OUTPUT_DIR }}"
       fi
