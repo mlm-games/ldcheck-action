@@ -11,7 +11,6 @@ LDCHECK is a tool used in Android development to identify missing shared library
 | Input | Description | Required | Default |
 |-------|-------------|----------|---------|
 | `OUTPUT_DIR` | Output directory of the build | Yes | N/A |
-| `DEVICE_NAME` | Device Codename | Yes | N/A |
 | `LDCHECKPATH` | Path of blobs to check | Yes | `system/bin/qseecomd` |
 
 ## Usage
@@ -23,7 +22,6 @@ To use this action in your workflow, add the following step:
   uses: mlm-games/ldcheck-action@main
   with:
     OUTPUT_DIR: ${{ env.OUTPUT_DIR }}
-    DEVICE_NAME: ${{ inputs.DEVICE_NAME }}
     LDCHECKPATH: ${{ inputs.LDCHECKPATH }}
 ```
 
@@ -49,7 +47,6 @@ jobs:
         uses: mlm-games/ldcheck-action@main
         with:
           OUTPUT_DIR: ${{ env.OUTPUT_DIR }}
-          DEVICE_NAME: my_device_codename
           LDCHECKPATH: system/bin/qseecomd
 
       # ... subsequent steps ...
@@ -62,7 +59,7 @@ This action includes two binary tools in the `tools` directory:
 1. `libneeds`: A utility for analyzing shared library dependencies.
 2. `ldcheck`: The main tool for checking library dependencies.
 
-These tools are automatically copied to the appropriate location in your build output directory when the action runs.
+These tools (only ldcheck is used) are automatically copied to the appropriate location in your build output directory when the action runs.
 
 
 ## Contributing
