@@ -13,16 +13,16 @@ steps:
   - name: Run LDCheck
     run: |
       # Determine the output directory, use env OUTPUT_DIR if OUTPUT_DIR is not provided
-      OUTPUT_DIR="${{ inputs.OUTPUT_DIR }}"
+      REC_ROOT="${{ inputs.OUTPUT_DIR }}"
       if [ -z "$OUTPUT_DIR" ]; then
-        OUTPUT_DIR="${{ env.OUTPUT_DIR }}"
+        REC_ROOT="${{ env.OUTPUT_DIR }}"
       fi
       
       # Copy tools to the appropriate location
-      cp ${{ github.action_path }}/tools/ldcheck "$OUTPUT_DIR/recovery/root/"
+      cp ${{ github.action_path }}/tools/ldcheck "$REC_ROOT/recovery/root/"
       
       # Change to the recovery root directory
-      cd "$OUTPUT_DIR/recovery/root"
+      cd "$REC_ROOT/recovery/root"
       
       # Run ldcheck
       python3 ldcheck -p system/lib64:vendor/lib64:system/lib:vendor/lib -d ${{ inputs.LDCHECKPATH }}
