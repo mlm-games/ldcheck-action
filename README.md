@@ -59,7 +59,7 @@ This action includes two binary tools in the `tools` directory:
 1. `libneeds`: A utility for analyzing shared library dependencies.
 2. `ldcheck`: The main tool for checking library dependencies.
 
-These tools (only ldcheck is used) are automatically copied to the appropriate location in your build output directory when the action runs.
+These tools are automatically copied to the appropriate location in your build output directory when the action runs.
 
 
 ## Contributing
