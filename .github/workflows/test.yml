@@ -1,0 +1,33 @@
+name: Run LDCheck on Recovery Build
+
+# Trigger on a push to the main branch or when a pull request is opened
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ldcheck_job:
+    name: Run LDCHECK
+    runs-on: ubuntu-latest 
+
+    steps:
+      # Check out the repository to access files
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Set up Python (since the action uses Python for running ldcheck)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # Run the 'LDCHECK-action'
+      - name: Run test LDCHECK action
+        uses: mlm-games/ldcheck-action@main  
+        with:
+          OUTPUT_DIR: './test'
+          LDCHECKPATH: 'system/bin/qseecomd'  # You can modify this if necessary
