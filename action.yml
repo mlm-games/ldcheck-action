@@ -7,7 +7,7 @@ inputs:
   LDCHECKPATH:
     description: 'Path of blobs to check'
     required: true
-    default: 'system/bin/qseecomd'
+    default: 'recovery/root/system/bin/qseecomd'
 
 runs:
   using: "composite"
@@ -15,14 +15,14 @@ runs:
     - name: Run LDCheck
       run: |
         # Copy tools to the appropriate location
-        cp ${{ github.action_path }}/tools/ldcheck ${{ inputs.OUTPUT_DIR }}/recovery/root/
-        cp ${{ github.action_path }}/tools/libneeds ${{ inputs.OUTPUT_DIR }}/recovery/root/
+        cp ${{ github.action_path }}/tools/ldcheck ${{ inputs.OUTPUT_DIR }}
+        cp ${{ github.action_path }}/tools/libneeds ${{ inputs.OUTPUT_DIR }}
         
         # Change to the recovery root directory
-        cd ${{ inputs.OUTPUT_DIR }}/recovery/root
+        cd ${{ inputs.OUTPUT_DIR }}
         
         # Run ldcheck and libneeds
-        python3 ldcheck -p system/lib64:vendor/lib64:system/lib:vendor/lib:sbin/lib:sbin/lib64 -d ${{ inputs.LDCHECKPATH }}
+        python3 ldcheck -p recovery/root/system/lib64:recovery/root/vendor/lib64:recovery/root/system/lib:recovery/root/vendor/lib:recovery/root/sbin/lib:recovery/root/sbin/lib64 -d ${{ inputs.LDCHECKPATH }}
         echo "******************************************** Now using libneeds ****************************************"
         chmod +x libneeds
         ./libneeds -p system/lib64:vendor/lib64:system/lib:vendor/lib:sbin -d ${{ inputs.LDCHECKPATH }}
