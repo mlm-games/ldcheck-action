@@ -11,7 +11,7 @@ LDCHECK is a tool used in Android development to identify missing shared library
 | Input | Description | Required | Default |
 |-------|-------------|----------|---------|
 | `OUTPUT_DIR` | Output directory of the build | Yes | N/A |
-| `LDCHECKPATH` | Path of blobs to check | Yes | `system/bin/qseecomd` |
+| `LDCHECKPATH` | Path of blobs to check | Yes | `recovery/root/system/bin/qseecomd` |
 
 ## Usage
 
