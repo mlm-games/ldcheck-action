@@ -7,7 +7,7 @@ inputs:
   LDCHECKPATH:
     description: 'Path of blobs to check'
     required: true
-    default: 'system/bin/qseecomd'
+    default: 'recovery/root/system/bin/qseecomd'
 
 runs:
   using: "composite"
